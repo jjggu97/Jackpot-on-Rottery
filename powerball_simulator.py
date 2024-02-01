@@ -1,20 +1,32 @@
-import itertools
+import random
 
-def calculate_powerball_odds():
-    white_balls_count = 5
-    white_balls_pool = 69
-    power_ball_pool = 26
+def generate_powerball_ticket():
+    white_balls = random.sample(range(1, 70), 5)  # Select 5 different numbers from 1 to 69
+    power_ball = random.randint(1, 26)            # Select a number from 1 to 26 for the Powerball
+    return sorted(white_balls), power_ball
 
-    total_outcomes = (white_balls_pool * (white_balls_pool - 1) * (white_balls_pool - 2) * (white_balls_pool - 3) * (white_balls_pool - 4)) // (5 * 4 * 3 * 2 * 1) * power_ball_pool
-    total_possible_combinations = (white_balls_pool ** white_balls_count) * power_ball_pool
+def simulate_powerball_tickets(num_tickets):
+    winning_ticket = generate_powerball_ticket()
+    num_winning_tickets = 0
 
-    probability = total_outcomes / total_possible_combinations
+    for _ in range(num_tickets):
+        ticket = generate_powerball_ticket()
+        if ticket == winning_ticket:
+            num_winning_tickets += 1
 
+    probability = num_winning_tickets / num_tickets
     return probability
 
 def main():
-    probability = calculate_powerball_odds()
-    print(f"The probability of winning the Powerball lottery: {probability:.15f}")
+    num_tickets = int(input("Enter the number of tickets to simulate: "))
+    num_simulations = int(input("Enter the number of simulations to run: "))
+    
+    total_probability = 0
+    for _ in range(num_simulations):
+        total_probability += simulate_powerball_tickets(num_tickets)
+    
+    average_probability = total_probability / num_simulations
+    print(f"After {num_simulations} simulations with {num_tickets} tickets each, the average probability of winning is: {average_probability:.15f}")
 
 if __name__ == "__main__":
     main()
