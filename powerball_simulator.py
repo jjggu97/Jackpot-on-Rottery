@@ -1,8 +1,8 @@
 import random
 
 def generate_powerball_ticket():
-    white_balls = random.sample(range(1, 70), 5)  # Select 5 different numbers from 1 to 69
-    power_ball = random.randint(1, 26)            # Select a number from 1 to 26 for the Powerball
+    white_balls = random.sample(range(1, 70), 5)  # while ball
+    power_ball = random.randint(1, 26)            # power ball
     return sorted(white_balls), power_ball
 
 def simulate_powerball_tickets(num_tickets):
