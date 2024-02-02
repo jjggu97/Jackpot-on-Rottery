@@ -1,32 +1,21 @@
 import random
 
-def generate_powerball_ticket():
-    white_balls = random.sample(range(1, 70), 5)  # while ball
-    power_ball = random.randint(1, 26)            # power ball
-    return sorted(white_balls), power_ball
+def powerball_simulation(num_tickets, num_simulations):
+    winning_numbers = set(random.sample(range(1, 70), 5))
+    winning_powerball = random.randint(1, 26)
+    wins = 0
 
-def simulate_powerball_tickets(num_tickets):
-    winning_ticket = generate_powerball_ticket()
-    num_winning_tickets = 0
-
-    for _ in range(num_tickets):
-        ticket = generate_powerball_ticket()
-        if ticket == winning_ticket:
-            num_winning_tickets += 1
-
-    probability = num_winning_tickets / num_tickets
-    return probability
-
-def main():
-    num_tickets = int(input("Enter the number of tickets to simulate: "))
-    num_simulations = int(input("Enter the number of simulations to run: "))
-    
-    total_probability = 0
     for _ in range(num_simulations):
-        total_probability += simulate_powerball_tickets(num_tickets)
-    
-    average_probability = total_probability / num_simulations
-    print(f"After {num_simulations} simulations with {num_tickets} tickets each, the average probability of winning is: {average_probability:.15f}")
+        for _ in range(num_tickets):
+            ticket_numbers = set(random.sample(range(1, 70), 5))
+            ticket_powerball = random.randint(1, 26)
+            if ticket_numbers == winning_numbers and ticket_powerball == winning_powerball:
+                wins += 1
 
-if __name__ == "__main__":
-    main()
+    return wins
+
+num_tickets = int(input("복권을 구매한 갯수를 입력하세요: "))
+num_simulations = int(input("시뮬레이션 횟수를 입력하세요: "))
+
+win_count = powerball_simulation(num_tickets, num_simulations)
+print("실제로 당첨된 횟수:", win_count)
