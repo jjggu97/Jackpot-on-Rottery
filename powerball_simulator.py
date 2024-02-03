@@ -12,4 +12,5 @@ def powerball_simulation(num_tickets, num_simulations):
             if ticket_numbers == winning_numbers and ticket_powerball == winning_powerball:
                 wins += 1
 
+
     return wins
