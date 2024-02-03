@@ -13,9 +13,3 @@ def powerball_simulation(num_tickets, num_simulations):
                 wins += 1
 
     return wins
-
-num_tickets = int(input("복권을 구매한 갯수를 입력하세요: "))
-num_simulations = int(input("시뮬레이션 횟수를 입력하세요: "))
-
-win_count = powerball_simulation(num_tickets, num_simulations)
-print("실제로 당첨된 횟수:", win_count)
