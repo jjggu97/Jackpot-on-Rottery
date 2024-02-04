@@ -1,16 +1,27 @@
-import random
+import matplotlib.pyplot as plt
 
-def powerball_simulation(num_tickets, num_simulations):
-    winning_numbers = set(random.sample(range(1, 70), 5))
-    winning_powerball = random.randint(1, 26)
-    wins = 0
+# Probabilities for each winning rank (example)
+winning_probabilities = {
+    '5 + Powerball': 1.3e-8,
+    '5': 1.4e-7,
+    '4 + Powerball': 0.000018,
+    '4': 0.00075,
+    '3 + Powerball': 0.00085,
+    '3': 0.038,
+    '2 + Powerball': 0.052,
+    '1 + Powerball': 0.91,
+    'Powerball': 0.39
+}
 
-    for _ in range(num_simulations):
-        for _ in range(num_tickets):
-            ticket_numbers = set(random.sample(range(1, 70), 5))
-            ticket_powerball = random.randint(1, 26)
-            if ticket_numbers == winning_numbers and ticket_powerball == winning_powerball:
-                wins += 1
+def visualize_powerball_probabilities(probabilities):
+    plt.figure(figsize=(10, 6))
+    plt.barh(list(probabilities.keys()), list(probabilities.values()), color='skyblue')
+    plt.title('Powerball Winning Probabilities')
+    plt.xlabel('Probability')
+    plt.ylabel('Rank')
+    plt.xscale('log')  # Use logarithmic scale
+    plt.gca().invert_yaxis()  # Invert the y-axis to display ranks in descending order
+    plt.grid(axis='x', linestyle='--', alpha=0.7)
+    plt.show()
 
-
-    return wins
+visualize_powerball_probabilities(winning_probabilities)
