@@ -4,11 +4,14 @@ list = []
 white_ball = random.randint(1,69)
 
 # select five numbers (white balls)
-for _ in range(5):
+for a in range(5):
     while white_ball in list:
         white_ball = random.randint(1,69)
     list.append(white_ball)
 
-print(list[0])
+# select bonus ball
 
+bonus_ball = random.randint(1,26)
+
+list_2 = []
 
