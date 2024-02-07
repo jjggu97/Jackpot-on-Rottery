@@ -19,4 +19,3 @@ if bonus_ball == num:
     print(f"you select right number, the number is {bonus_ball}")
 else:
     print(f"you select wrong number, the number is {bonus_ball}")
-    2
