@@ -13,5 +13,10 @@ for a in range(5):
 
 bonus_ball = random.randint(1,26)
 
+num = int(input('Enter the number : '))
 
-print(list,bonus_ball)
+if bonus_ball == num:
+    print(f"you select right number, the number is {bonus_ball}")
+else:
+    print(f"you select wrong number, the number is {bonus_ball}")
+    2
