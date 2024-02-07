@@ -13,5 +13,5 @@ for a in range(5):
 
 bonus_ball = random.randint(1,26)
 
-list_2 = []
 
+print(list,bonus_ball)
