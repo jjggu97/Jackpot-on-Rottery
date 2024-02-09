@@ -1,27 +1,29 @@
 import random
 
-list = []
-white_ball = random.randint(1,69)
+def run_powerball(num_trials):
+    win_count = 0
+    
+    for _ in range(num_trials):
+        white_balls = set()
+        while len(white_balls) < 5:
+            white_ball = random.randint(1, 69)
+            white_balls.add(white_ball)
 
-# select five numbers (white balls)
-for a in range(5):
-    while white_ball in list:
-        white_ball = random.randint(1,69)
-    list.append(white_ball)
+        bonus_ball = random.randint(1, 26)
 
-# select bonus ball
+        chosen_bonus = int(input('Enter your chosen bonus number (1-26): '))
 
-bonus_ball = random.randint(1,26)
+        if chosen_bonus == bonus_ball:
+            win_count += 1
 
-num = int(input('Enter the number : '))
+    return win_count
 
-a = None
+def main():
+    num_trials = int(input("Enter the number of Powerball trials: "))
+    num_wins = run_powerball(num_trials)
 
-if bonus_ball == num:
-    a = 1
-else:
-    a = 0
+    print(f"Out of {num_trials} trials, you won {num_wins} times.")
+    print(f"The probability of winning was {num_wins / num_trials * 100:.2f}%.")
 
-a = 1 (print("You won!"))
-a = 0 (print("You lose.."))
-
+if __name__ == "__main__":
+    main()
