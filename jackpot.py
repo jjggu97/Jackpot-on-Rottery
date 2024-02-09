@@ -15,8 +15,13 @@ bonus_ball = random.randint(1,26)
 
 num = int(input('Enter the number : '))
 
+a = None
+
 if bonus_ball == num:
-    print(f"you select right number, the number is {bonus_ball}")
+    a = 1
 else:
-    print(f"you select wrong number, the number is {bonus_ball}")
+    a = 0
+
+a = 1 (print("You won!"))
+a = 0 (print("You lose.."))
 
