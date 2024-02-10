@@ -5,7 +5,7 @@ def run_powerball(num_trials):
     
     for _ in range(num_trials):
         white_balls = set()
-        while len(white_balls) < 5:
+        while len(white_balls) < 6:
             white_ball = random.randint(1, 69)
             white_balls.add(white_ball)
 
