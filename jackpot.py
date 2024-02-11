@@ -25,5 +25,3 @@ def main():
     print(f"Out of {num_trials} trials, you won {num_wins} times.")
     print(f"The probability of winning was {num_wins / num_trials * 100:.2f}%.")
 
-if __name__ == "__main__":
-    main()
