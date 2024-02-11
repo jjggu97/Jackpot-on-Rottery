@@ -1,17 +1,13 @@
 import random
 
 def generate_powerball_numbers():
-    # Select 5 numbers from 1 to 69 for the Powerball drawing
-    # Select 1 number from 1 to 26 for the Powerball itself
     powerball_numbers = random.sample(range(1, 70), 5)
     powerball_numbers.sort()
     powerball_numbers.append(random.randint(1, 26))
     return powerball_numbers
 
 def get_user_numbers():
-    # Prompt the user to select 5 numbers from 1 to 69
-    # Also, prompt to select 1 Powerball number from 1 to 26
-    print("Choose your Powerball numbers (5 numbers from 1 to 69):")
+    print("Choose your Powerball numbers (5 numbers from 1 ~ 69):")
     user_numbers = []
     while len(user_numbers) < 5:
         try:
@@ -19,7 +15,7 @@ def get_user_numbers():
             if 1 <= number <= 69 and number not in user_numbers:
                 user_numbers.append(number)
             else:
-                print("Please enter a valid number between 1 and 69.")
+                print("Please enter a valid number between 1 ~ 69.")
         except ValueError:
             print("Please enter a valid number.")
     
@@ -35,3 +31,37 @@ def get_user_numbers():
             print("Please enter a valid number.")
     
     return user_numbers
+
+def check_winner(user_numbers, powerball_numbers):
+    match_count = len(set(user_numbers) & set(powerball_numbers[:5]))
+    powerball_match = user_numbers[-1] == powerball_numbers[-1]
+    if match_count == 5 and powerball_match:
+        return "Jackpot! You won!"
+    elif match_count == 5:
+        return "Congratulations! You matched all 5 numbers but not the Powerball."
+    elif match_count == 4 and powerball_match:
+        return "You matched 4 numbers plus the Powerball! Well done!"
+    elif match_count == 4:
+        return "You matched 4 numbers. Good job!"
+    elif match_count == 3 and powerball_match:
+        return "You matched 3 numbers plus the Powerball!"
+    elif match_count == 3:
+        return "You matched 3 numbers."
+    elif match_count == 2 and powerball_match:
+        return "You matched 2 numbers plus the Powerball."
+    elif match_count == 1 and powerball_match:
+        return "You matched 1 number plus the Powerball."
+    elif powerball_match:
+        return "You matched the Powerball only."
+    else:
+        return "Sorry, you didn't win this time."
+
+def main():
+    user_numbers = get_user_numbers()
+    powerball_numbers = generate_powerball_numbers()
+    print("Your numbers:", user_numbers[:-1], "Powerball:", user_numbers[-1])
+    print("Winning numbers:", powerball_numbers[:-1], "Powerball:", powerball_numbers[-1])
+    print(check_winner(user_numbers, powerball_numbers))
+
+if __name__ == "__main__":
+    main()
