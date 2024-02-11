@@ -15,9 +15,9 @@ def get_user_numbers():
             if 1 <= number <= 69 and number not in user_numbers:
                 user_numbers.append(number)
             else:
-                print("Please enter a valid number between 1 ~ 69.")
+                print("Enter a valid number between 1 ~ 69.")
         except ValueError:
-            print("Please enter a valid number.")
+            print("Enter a valid number.")
     
     while True:
         try:
