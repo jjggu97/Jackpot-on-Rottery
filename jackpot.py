@@ -32,6 +32,7 @@ def get_user_numbers():
     
     return user_numbers
 
+# simulate powerball
 def check_winner(user_numbers, powerball_numbers):
     match_count = len(set(user_numbers) & set(powerball_numbers[:5]))
     powerball_match = user_numbers[-1] == powerball_numbers[-1]
