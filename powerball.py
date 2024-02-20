@@ -1,6 +1,5 @@
 import random
 
-
 def generate_powerball_numbers():
     powerball_numbers = random.sample(range(1, 70), 5)
     powerball_numbers.sort()
