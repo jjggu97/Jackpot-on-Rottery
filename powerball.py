@@ -7,7 +7,7 @@ def generate_powerball_numbers():
     return powerball_numbers
 
 def get_user_numbers():
-    print("Choose your Powerball numbers (5 numbers from 1 ~ 69):")
+    print("Choose your 5 numbers (5 numbers from 1 ~ 69):")
     user_numbers = []
     while len(user_numbers) < 5:
         try:
@@ -21,7 +21,7 @@ def get_user_numbers():
     
     while True:
         try:
-            powerball_number = int(input("Enter your Powerball number (1 to 26): "))
+            powerball_number = int(input("Enter your bonus number (1 to 26): "))
             if 1 <= powerball_number <= 26:
                 user_numbers.append(powerball_number)
                 break
@@ -37,9 +37,9 @@ def check_winner(user_numbers, powerball_numbers):
     match_count = len(set(user_numbers) & set(powerball_numbers[:5]))
     powerball_match = user_numbers[-1] == powerball_numbers[-1]
     if match_count == 5 and powerball_match:
-        return "Jackpot! You won!"
+        return "Jackpot! You matched ALL numbers!"
     elif match_count == 5:
-        return "Congratulations! You matched all 5 numbers but not the Powerball."
+        return "Congratulations! You matched all 5 numbers except bonus ball."
     elif match_count == 4 and powerball_match:
         return "You matched 4 numbers plus the Powerball! Well done!"
     elif match_count == 4:
