@@ -11,14 +11,14 @@ def get_user_numbers():
     user_numbers = []
     while len(user_numbers) < 5:
         try:
-            number = int(input(f"Enter {len(user_numbers) + 1}nd number: "))
+            number = int(input(f"Enter your number [{len(user_numbers) + 1}]: "))
             if 1 <= number <= 69 and number not in user_numbers:
                 user_numbers.append(number)
             else:
                 print("Enter a valid number between 1 ~ 69.")
         except ValueError:
             print("Enter a valid number.")
-    
+    2
     while True:
         try:
             powerball_number = int(input("Enter your bonus number (1 to 26): "))
@@ -39,7 +39,7 @@ def check_winner(user_numbers, powerball_numbers):
     if match_count == 5 and powerball_match:
         return "Jackpot! You matched ALL numbers!"
     elif match_count == 5:
-        return "Congratulations! You matched all 5 numbers except bonus ball."
+        return "Congratulations! You matched all 5 numbers! (except bonus ball.)"
     elif match_count == 4 and powerball_match:
         return "You matched 4 numbers plus the Powerball! Well done!"
     elif match_count == 4:
