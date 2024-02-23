@@ -39,21 +39,21 @@ def check_winner(user_numbers, powerball_numbers):
     if match_count == 5 and powerball_match:
         return "Jackpot! You matched ALL numbers!"
     elif match_count == 5:
-        return "Congratulations! You matched all 5 numbers! (except bonus ball.)"
+        return "Congratulations! You matched all numbers! (except bonus ball.)"
     elif match_count == 4 and powerball_match:
-        return "You matched 4 numbers plus the Powerball! Well done!"
+        return "You matched 4 numbers and bonus number!"
     elif match_count == 4:
-        return "You matched 4 numbers. Good job!"
+        return "You matched 4 numbers."
     elif match_count == 3 and powerball_match:
-        return "You matched 3 numbers plus the Powerball!"
+        return "You matched 3 numbers and bonus number!"
     elif match_count == 3:
         return "You matched 3 numbers."
     elif match_count == 2 and powerball_match:
-        return "You matched 2 numbers plus the Powerball."
+        return "You matched 2 numbers and bonus number!"
     elif match_count == 1 and powerball_match:
-        return "You matched 1 number plus the Powerball."
+        return "You matched 1 number and bonus number."
     elif powerball_match:
-        return "You matched the Powerball only."
+        return "You matched bonus number."
     else:
         return "Sorry, you didn't win this time."
 
