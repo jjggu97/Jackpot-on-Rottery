@@ -33,41 +33,22 @@ def get_user_numbers():
 
 # simulate powerball
 def check_winner(user_numbers, powerball_numbers):
-    match_count = len(set(user_numbers) & set(powerball_numbers[:5]))
-    powerball_match = user_numbers[-1] == powerball_numbers[-1]
-    if match_count == 5 and powerball_match:
-        return "Jackpot! You matched ALL numbers!"
-    elif match_count == 5:
-        return "Congratulations! You matched all numbers! (except bonus ball.)"
-    elif match_count == 4 and powerball_match:
-        return "You matched 4 numbers and bonus number!"
-    elif match_count == 4:
-        return "You matched 4 numbers."
-    elif match_count == 3 and powerball_match:
-        return "You matched 3 numbers and bonus number!"
-    elif match_count == 3:
-        return "You matched 3 numbers."
-    elif match_count == 2 and powerball_match:
-        return "You matched 2 numbers and bonus number!"
-    elif match_count == 1 and powerball_match:
-        return "You matched 1 number and bonus number."
-    elif powerball_match:
-        return "You matched bonus number."
-    else:
-        return "Sorry, you didn't win this time."
+    return any(number in powerball_numbers[:5] for number in user_numbers)
 
 def main():
-    play_again = True
+    user_numbers = get_user_numbers()
+    print("Your numbers:", user_numbers[:-1], "Bonus number:", user_numbers[-1])
+    
     attempts = 0
-    while play_again:
-        user_numbers = get_user_numbers()
-        powerball_numbers = generate_powerball_numbers()
-        print("Your numbers:", user_numbers[:-1], "Bonus number:", user_numbers[-1])
-        print("Winning numbers:", powerball_numbers[:-1], "Bonus number:", powerball_numbers[-1])
-        print(check_winner(user_numbers, powerball_numbers))
+    while True:
         attempts += 1
-        play_again = input("Do you want to play again? (yes/no): ").lower() == 'yes'
-    print("Total attempts:", attempts)
+        powerball_numbers = generate_powerball_numbers()
+        print("Winning numbers:", powerball_numbers[:-1], "Bonus number:", powerball_numbers[-1])
+        if check_winner(user_numbers, powerball_numbers):
+            print(f"Congratulations! You won after {attempts} attempts!")
+            break
+        else:
+            print("Sorry, you didn't win this time. Trying again...")
 
 if __name__ == "__main__":
     main()
