@@ -39,8 +39,10 @@ def main():
     user_numbers = get_user_numbers()
     print("Your numbers:", user_numbers[:-1], "Bonus number:", user_numbers[-1])
     
+    # attempts
     attempts = 0
-    while True:
+    max_attempts = 10000
+    while attempts < max_attempts:
         attempts += 1
         powerball_numbers = generate_powerball_numbers()
         print("Winning numbers:", powerball_numbers[:-1], "Bonus number:", powerball_numbers[-1])
@@ -49,6 +51,8 @@ def main():
             break
         else:
             print("Sorry, you didn't win this time. Trying again...")
+    else:
+        print(f"Maximum attempts reached ({max_attempts}). Exiting the game.")
 
 if __name__ == "__main__":
     main()
