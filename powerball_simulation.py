@@ -33,7 +33,7 @@ def get_user_numbers():
 
 # simulate powerball
 def check_winner(user_numbers, powerball_numbers):
-    return any(number in powerball_numbers[:5] for number in user_numbers)
+    return user_numbers[:-1] == powerball_numbers[:5]
 
 def main():
     user_numbers = get_user_numbers()
