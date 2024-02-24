@@ -60,8 +60,8 @@ def check_winner(user_numbers, powerball_numbers):
 def main():
     user_numbers = get_user_numbers()
     powerball_numbers = generate_powerball_numbers()
-    print("Your numbers:", user_numbers[:-1], "Powerball:", user_numbers[-1])
-    print("Winning numbers:", powerball_numbers[:-1], "Powerball:", powerball_numbers[-1])
+    print("Your numbers:", user_numbers[:-1], "Bonus number:", user_numbers[-1])
+    print("Winning numbers:", powerball_numbers[:-1], "Bonus number:", powerball_numbers[-1])
     print(check_winner(user_numbers, powerball_numbers))
 
 if __name__ == "__main__":
