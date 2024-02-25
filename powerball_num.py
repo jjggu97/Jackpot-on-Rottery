@@ -1,4 +1,5 @@
 import random
+import matplotlib.pyplot as plt
 
 def generate_powerball_numbers():
     powerball_numbers = random.sample(range(1, 70), 5)
@@ -18,7 +19,6 @@ def get_user_numbers():
                 print("Enter a valid number between 1 ~ 69.")
         except ValueError:
             print("Enter a valid number.")
-    
     while True:
         try:
             powerball_number = int(input("Enter your bonus number (1 to 26): "))
@@ -34,35 +34,32 @@ def get_user_numbers():
 
 # simulate powerball
 def check_winner(user_numbers, powerball_numbers):
-    match_count = len(set(user_numbers) & set(powerball_numbers[:5]))
-    powerball_match = user_numbers[-1] == powerball_numbers[-1]
-    if match_count == 5 and powerball_match:
-        return "Jackpot! You matched ALL numbers!"
-    elif match_count == 5:
-        return "Congratulations! You matched all numbers! (except bonus ball.)"
-    elif match_count == 4 and powerball_match:
-        return "You matched 4 numbers and bonus number!"
-    elif match_count == 4:
-        return "You matched 4 numbers."
-    elif match_count == 3 and powerball_match:
-        return "You matched 3 numbers and bonus number!"
-    elif match_count == 3:
-        return "You matched 3 numbers."
-    elif match_count == 2 and powerball_match:
-        return "You matched 2 numbers and bonus number!"
-    elif match_count == 1 and powerball_match:
-        return "You matched 1 number and bonus number."
-    elif powerball_match:
-        return "You matched bonus number."
-    else:
-        return "Sorry, you didn't win this time."
+    return user_numbers[:-1] == powerball_numbers[:5]
 
-def main():
+def count_matching_numbers(user_numbers, powerball_numbers):
+    matching_numbers = sum(num in powerball_numbers[:5] for num in user_numbers[:-1])
+    bonus_match = 1 if user_numbers[-1] == powerball_numbers[-1] else 0
+    return matching_numbers + bonus_match
+
+def simulate_and_visualize(max_attempts=10000):
+    matching_numbers_count = []
+    
     user_numbers = get_user_numbers()
-    powerball_numbers = generate_powerball_numbers()
     print("Your numbers:", user_numbers[:-1], "Bonus number:", user_numbers[-1])
-    print("Winning numbers:", powerball_numbers[:-1], "Bonus number:", powerball_numbers[-1])
-    print(check_winner(user_numbers, powerball_numbers))
+    
+    for _ in range(max_attempts):
+        powerball_numbers = generate_powerball_numbers()
+        matching_numbers = count_matching_numbers(user_numbers, powerball_numbers)
+        matching_numbers_count.append(matching_numbers)
+    
+    # Visualizing
+    plt.hist(matching_numbers_count, bins=range(8), align='left', rwidth=0.5)
+    plt.xlabel('Number of Matching Numbers')
+    plt.ylabel('Frequency')
+    plt.title('Distribution of Matching Numbers in Powerball Simulation')
+    plt.xticks(range(8))
+    plt.grid(axis='y', alpha=0.75)
+    plt.show()
 
 if __name__ == "__main__":
-    main()
+    simulate_and_visualize()

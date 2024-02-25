@@ -25,7 +25,7 @@ def get_user_numbers():
                 user_numbers.append(powerball_number)
                 break
             else:
-                print("Please enter a valid Powerball number between 1 and 26.")
+                print("Please enter a valid number between 1 and 26.")
         except ValueError:
             print("Please enter a valid number.")
     
@@ -36,7 +36,9 @@ def check_winner(user_numbers, powerball_numbers):
     return user_numbers[:-1] == powerball_numbers[:5]
 
 def count_matching_numbers(user_numbers, powerball_numbers):
-    return sum(num in powerball_numbers[:5] for num in user_numbers[:-1])
+    matching_numbers = sum(num in powerball_numbers[:5] for num in user_numbers[:-1])
+    bonus_match = 1 if user_numbers[-1] == powerball_numbers[-1] else 0
+    return matching_numbers + bonus_match
 
 def main():
     user_numbers = get_user_numbers()
@@ -45,6 +47,7 @@ def main():
     attempts = 0
     max_attempts = 10000
     max_matching_numbers = 0
+    max_matching_bonus = 0
     
     while attempts < max_attempts:
         attempts += 1
