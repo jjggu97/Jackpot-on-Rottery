@@ -35,24 +35,35 @@ def get_user_numbers():
 def check_winner(user_numbers, powerball_numbers):
     return user_numbers[:-1] == powerball_numbers[:5]
 
+def count_matching_numbers(user_numbers, powerball_numbers):
+    return sum(num in powerball_numbers[:5] for num in user_numbers[:-1])
+
 def main():
     user_numbers = get_user_numbers()
     print("Your numbers:", user_numbers[:-1], "Bonus number:", user_numbers[-1])
     
-    # attempts
     attempts = 0
     max_attempts = 10000
+    max_matching_numbers = 0
+    
     while attempts < max_attempts:
         attempts += 1
         powerball_numbers = generate_powerball_numbers()
         print("Winning numbers:", powerball_numbers[:-1], "Bonus number:", powerball_numbers[-1])
+        
+        matching_numbers = count_matching_numbers(user_numbers, powerball_numbers)
+        
+        if matching_numbers > max_matching_numbers:
+            max_matching_numbers = matching_numbers
+        
         if check_winner(user_numbers, powerball_numbers):
             print(f"Congratulations! You won after {attempts} attempts!")
             break
         else:
-            print("Sorry, you didn't win this time. Trying again...")
+            print(f"Sorry, you didn't win this time. Matching numbers: {matching_numbers}. Trying again...")
     else:
-        print(f"Maximum attempts reached ({max_attempts}). Exiting the game.")
+        print(f"Maximum attempts reached ({max_attempts}).")
+        print(f"Maximum matching numbers in a single attempt: {max_matching_numbers}. Exiting the game.")
 
 if __name__ == "__main__":
     main()
