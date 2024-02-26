@@ -1,1 +1,1 @@
-This code simulates "powerball".
+# Poewrball Lottery Simulation 🎰
