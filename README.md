@@ -1,1 +1,0 @@
-This code simulates "powerball".

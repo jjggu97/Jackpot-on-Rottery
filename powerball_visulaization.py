@@ -56,7 +56,7 @@ def simulate_and_visualize(max_attempts=10000):
     plt.hist(matching_numbers_count, bins=range(8), align='left', rwidth=0.5)
     plt.xlabel('Number of Matching Numbers')
     plt.ylabel('Frequency')
-    plt.title('Distribution of Matching Numbers in Powerball Simulation')
+    plt.title('Matching Numbers in Powerball Simulation')
     plt.xticks(range(8))
     plt.grid(axis='y', alpha=0.75)
     plt.show()
